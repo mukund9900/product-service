@@ -1,0 +1,1396 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Product Management Service",
+    "version": "1.0.0",
+    "description": "Fetching Books from the data store ",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Book List",
+      "externalDocs": {
+        "url": "https://github.com/mukund9900/product-service/tree/dev",
+        "description": "Github Repository"
+      }
+    }
+  ],
+  "paths": {
+    "/api/v1/books": {
+      "get": {
+        "tags": ["Book List"],
+        "summary": "Fetch Books",
+        "description": "Fetch Books",
+        "operationId": "fetchBooks",
+        "parameters": [
+          {
+            "name": "searchTxt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "Die"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "5"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "[['bookId', 'ASC']]"
+            }
+          },
+          {
+            "name": "bookId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "1234"
+            }
+          },
+          {
+            "name": "genre",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "Action"
+            }
+          },
+          {
+            "name": "availability",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "false"
+            }
+          },
+          {
+            "name": "isbn",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "0205080057"
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "631170332000"
+            }
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "1293685532000"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetch Books by title Search / Fetch Books by Author Search / Fetch Books with pagination / Fetch Books with sort order for any fields / Fetch Books with genre filter / Fetch Books with availibility filter / Fetch Books with Date Range filter on publishedDate",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "string",
+                  "example": "1541"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 30 Jan 2024 06:04:00 GMT"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"605-z2GhzcGoOVoIXKaVdgn4rXNwXdc\""
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "0"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "author": {
+                        "type": "string",
+                        "example": "Jane Austen"
+                      },
+                      "availability": {
+                        "type": "boolean",
+                        "example": true
+                      },
+                      "bookId": {
+                        "type": "number",
+                        "example": 5
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "example": "2024-01-30T00:00:12.800Z"
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "A romantic novel set in the early 19th century"
+                      },
+                      "genre": {
+                        "type": "string",
+                        "example": "Romance"
+                      },
+                      "isbn": {
+                        "type": "string",
+                        "example": "978-1612930291"
+                      },
+                      "publishedDate": {
+                        "type": "string",
+                        "example": "441235200000"
+                      },
+                      "title": {
+                        "type": "string",
+                        "example": "Pride and Prejudice"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "example": "2024-01-30T00:00:12.800Z"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "author": "Jane Austen",
+                      "availability": true,
+                      "bookId": 5,
+                      "createdAt": "2024-01-30T00:00:12.800Z",
+                      "description": "A romantic novel set in the early 19th century",
+                      "genre": "Romance",
+                      "isbn": "978-1612930291",
+                      "publishedDate": "441235200000",
+                      "title": "Pride and Prejudice",
+                      "updatedAt": "2024-01-30T00:00:12.800Z"
+                    }
+                  ]
+                },
+                "examples": {
+                  "Fetch Books by Author Search": {
+                    "value": [
+                      {
+                        "author": "Jane Austen",
+                        "availability": true,
+                        "bookId": 5,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "A romantic novel set in the early 19th century",
+                        "genre": "Romance",
+                        "isbn": "978-1612930291",
+                        "publishedDate": "441235200000",
+                        "title": "Pride and Prejudice",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      }
+                    ]
+                  },
+                  "Fetch Books by title Search": {
+                    "value": [
+                      {
+                        "author": "Jane Austen",
+                        "availability": true,
+                        "bookId": 5,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "A romantic novel set in the early 19th century",
+                        "genre": "Romance",
+                        "isbn": "978-1612930291",
+                        "publishedDate": "441235200000",
+                        "title": "Pride and Prejudice",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      }
+                    ]
+                  },
+                  "Fetch Books with Date Range filter on publishedDate": {
+                    "value": [
+                      {
+                        "author": "F. Scott Fitzgerald",
+                        "availability": true,
+                        "bookId": 2,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "A novel about the American Dream",
+                        "genre": "Fiction",
+                        "isbn": "978-0743273565",
+                        "publishedDate": "1993-12-31T18:30:00.000Z",
+                        "title": "The Great Gatsby",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "Harper Lee",
+                        "availability": true,
+                        "bookId": 3,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "A classic novel addressing racial injustice",
+                        "genre": "Fiction",
+                        "isbn": "978-0061120084",
+                        "publishedDate": "1997-01-12T18:30:00.000Z",
+                        "title": "To Kill a Mockingbird",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "Jane Austen",
+                        "availability": true,
+                        "bookId": 5,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "A romantic novel set in the early 19th century",
+                        "genre": "Romance",
+                        "isbn": "978-1612930291",
+                        "publishedDate": "1998-07-12T18:30:00.000Z",
+                        "title": "Pride and Prejudice",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "Aldous Huxley",
+                        "availability": true,
+                        "bookId": 10,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "Dystopian novel exploring a utopian society",
+                        "genre": "Science Fiction",
+                        "isbn": "978-0060850524",
+                        "publishedDate": "2002-02-01T18:30:00.000Z",
+                        "title": "Brave New World",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "Dan Brown",
+                        "availability": true,
+                        "bookId": 11,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "Thriller exploring religious symbols",
+                        "genre": "Mystery",
+                        "isbn": "978-0307474278",
+                        "publishedDate": "1998-05-16T18:30:00.000Z",
+                        "title": "The Da Vinci Code",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      }
+                    ]
+                  },
+                  "Fetch Books with availibility filter": {
+                    "value": [
+                      {
+                        "author": "Max",
+                        "availability": false,
+                        "bookId": 1234,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "This the sample description",
+                        "genre": "Action",
+                        "isbn": "0205080057",
+                        "publishedDate": "1706591132000",
+                        "title": "Die Hard",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      }
+                    ]
+                  },
+                  "Fetch Books with genre filter": {
+                    "value": [
+                      {
+                        "author": "F. Scott Fitzgerald",
+                        "availability": true,
+                        "bookId": 2,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "A novel about the American Dream",
+                        "genre": "Fiction",
+                        "isbn": "978-0743273565",
+                        "publishedDate": "424611200000",
+                        "title": "The Great Gatsby",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "Harper Lee",
+                        "availability": true,
+                        "bookId": 3,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "A classic novel addressing racial injustice",
+                        "genre": "Fiction",
+                        "isbn": "978-0061120084",
+                        "publishedDate": "1531296000000",
+                        "title": "To Kill a Mockingbird",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "J.D. Salinger",
+                        "availability": true,
+                        "bookId": 8,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "Coming-of-age novel",
+                        "genre": "Fiction",
+                        "isbn": "978-0241950425",
+                        "publishedDate": "673507200000",
+                        "title": "The Catcher in the Rye",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      }
+                    ]
+                  },
+                  "Fetch Books with pagination": {
+                    "value": [
+                      {
+                        "author": "Harper Lee",
+                        "availability": true,
+                        "bookId": 3,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "A classic novel addressing racial injustice",
+                        "genre": "Fiction",
+                        "isbn": "978-0061120084",
+                        "publishedDate": "1531296000000",
+                        "title": "To Kill a Mockingbird",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "George Orwell",
+                        "availability": true,
+                        "bookId": 4,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "Dystopian novel exploring surveillance and totalitarianism",
+                        "genre": "Science Fiction",
+                        "isbn": "978-0451524935",
+                        "publishedDate": "600748800000",
+                        "title": "1984",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "Jane Austen",
+                        "availability": true,
+                        "bookId": 5,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "A romantic novel set in the early 19th century",
+                        "genre": "Romance",
+                        "isbn": "978-1612930291",
+                        "publishedDate": "441235200000",
+                        "title": "Pride and Prejudice",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "J.R.R. Tolkien",
+                        "availability": true,
+                        "bookId": 6,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "Fantasy novel about the journey of Bilbo Baggins",
+                        "genre": "Fantasy",
+                        "isbn": "978-0547928227",
+                        "publishedDate": "559929600000",
+                        "title": "The Hobbit",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "F. Scott Fitzgerald",
+                        "availability": true,
+                        "bookId": 2,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "A novel about the American Dream",
+                        "genre": "Fiction",
+                        "isbn": "978-0743273565",
+                        "publishedDate": "424611200000",
+                        "title": "The Great Gatsby",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      }
+                    ]
+                  },
+                  "Fetch Books with sort order for any fields": {
+                    "value": [
+                      {
+                        "author": "F. Scott Fitzgerald",
+                        "availability": true,
+                        "bookId": 2,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "A novel about the American Dream",
+                        "genre": "Fiction",
+                        "isbn": "978-0743273565",
+                        "publishedDate": "424611200000",
+                        "title": "The Great Gatsby",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "Harper Lee",
+                        "availability": true,
+                        "bookId": 3,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "A classic novel addressing racial injustice",
+                        "genre": "Fiction",
+                        "isbn": "978-0061120084",
+                        "publishedDate": "1531296000000",
+                        "title": "To Kill a Mockingbird",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "George Orwell",
+                        "availability": true,
+                        "bookId": 4,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "Dystopian novel exploring surveillance and totalitarianism",
+                        "genre": "Science Fiction",
+                        "isbn": "978-0451524935",
+                        "publishedDate": "600748800000",
+                        "title": "1984",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "Jane Austen",
+                        "availability": true,
+                        "bookId": 5,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "A romantic novel set in the early 19th century",
+                        "genre": "Romance",
+                        "isbn": "978-1612930291",
+                        "publishedDate": "441235200000",
+                        "title": "Pride and Prejudice",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "J.R.R. Tolkien",
+                        "availability": true,
+                        "bookId": 6,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "Fantasy novel about the journey of Bilbo Baggins",
+                        "genre": "Fantasy",
+                        "isbn": "978-0547928227",
+                        "publishedDate": "559929600000",
+                        "title": "The Hobbit",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "J.K. Rowling",
+                        "availability": true,
+                        "bookId": 7,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "First book in the Harry Potter series",
+                        "genre": "Fantasy",
+                        "isbn": "978-0590353427",
+                        "publishedDate": "867715200000",
+                        "title": "Harry Potter and the Sorcerer's Stone",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "J.D. Salinger",
+                        "availability": true,
+                        "bookId": 8,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "Coming-of-age novel",
+                        "genre": "Fiction",
+                        "isbn": "978-0241950425",
+                        "publishedDate": "673507200000",
+                        "title": "The Catcher in the Rye",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "J.R.R. Tolkien",
+                        "availability": true,
+                        "bookId": 9,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "Epic high fantasy trilogy",
+                        "genre": "Fantasy",
+                        "isbn": "978-0618645619",
+                        "publishedDate": "1479724800000",
+                        "title": "The Lord of the Rings",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "Aldous Huxley",
+                        "availability": true,
+                        "bookId": 10,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "Dystopian novel exploring a utopian society",
+                        "genre": "Science Fiction",
+                        "isbn": "978-0060850524",
+                        "publishedDate": "933542400000",
+                        "title": "Brave New World",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      },
+                      {
+                        "author": "Dan Brown",
+                        "availability": true,
+                        "bookId": 11,
+                        "createdAt": "2024-01-30T00:00:12.800Z",
+                        "description": "Thriller exploring religious symbols",
+                        "genre": "Mystery",
+                        "isbn": "978-0307474278",
+                        "publishedDate": "1058572800000",
+                        "title": "The Da Vinci Code",
+                        "updatedAt": "2024-01-30T00:00:12.800Z"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Book",
+        "description": "Create Book",
+        "operationId": "createBook",
+        "tags": ["Book List"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "author": {
+                    "type": "string",
+                    "example": "F. Scott Fitzgerald"
+                  },
+                  "availability": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "A classic novel depicting the decadence of the Jazz Age."
+                  },
+                  "genre": {
+                    "type": "string",
+                    "example": "Fiction"
+                  },
+                  "isbn": {
+                    "type": "string",
+                    "example": "97801411829990"
+                  },
+                  "publishedDate": {
+                    "type": "string",
+                    "example": "1925-04-99"
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "Soft Car bent"
+                  }
+                }
+              },
+              "examples": {
+                "Create Book": {
+                  "value": {
+                    "author": "F. Scott Fitzgerald",
+                    "availability": true,
+                    "description": "A classic novel depicting the decadence of the Jazz Age.",
+                    "genre": "Fiction",
+                    "isbn": "97801411829990",
+                    "publishedDate": "1925-04-99",
+                    "title": "Soft Car bent"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "string",
+                  "example": "327"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 30 Jan 2024 17:42:59 GMT"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"147-QJ5Fnuasvrna5rBVnHGADKtk4As\""
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "0"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "author": {
+                      "type": "string",
+                      "example": "F. Scott Fitzgerald"
+                    },
+                    "availability": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "bookId": {
+                      "type": "number",
+                      "example": 27
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2024-01-30T17:42:59.019Z"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "A classic novel depicting the decadence of the Jazz Age."
+                    },
+                    "genre": {
+                      "type": "string",
+                      "example": "Fiction"
+                    },
+                    "isbn": {
+                      "type": "string",
+                      "example": "9780141182999"
+                    },
+                    "publishedDate": {
+                      "type": "string",
+                      "example": "1925-04-10T00:00:00.000Z"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Big Pink Mountain"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2024-01-30T17:42:59.019Z"
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "author": "F. Scott Fitzgerald",
+                      "availability": true,
+                      "bookId": 27,
+                      "createdAt": "2024-01-30T17:42:59.019Z",
+                      "description": "A classic novel depicting the decadence of the Jazz Age.",
+                      "genre": "Fiction",
+                      "isbn": "9780141182999",
+                      "publishedDate": "1925-04-10T00:00:00.000Z",
+                      "title": "Big Pink Mountain",
+                      "updatedAt": "2024-01-30T17:42:59.019Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "field level validation / Date Field validations",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "string",
+                  "example": "122"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 30 Jan 2024 17:45:16 GMT"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"7a-WF4Og+9nK77QG05geiRZXJh+yGI\""
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "0"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "location": {
+                            "type": "string",
+                            "example": "body"
+                          },
+                          "msg": {
+                            "type": "string",
+                            "example": "ISBN must be a string"
+                          },
+                          "path": {
+                            "type": "string",
+                            "example": "isbn"
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "field"
+                          },
+                          "value": {
+                            "type": "number",
+                            "example": 9780141182999
+                          }
+                        }
+                      },
+                      "example": [
+                        {
+                          "location": "body",
+                          "msg": "ISBN must be a string",
+                          "path": "isbn",
+                          "type": "field",
+                          "value": 9780141182999
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Date Field validations": {
+                    "value": {
+                      "errors": [
+                        {
+                          "location": "body",
+                          "msg": "Invalid published date",
+                          "path": "publishedDate",
+                          "type": "field",
+                          "value": "1925-04-99"
+                        }
+                      ]
+                    }
+                  },
+                  "field level validation": {
+                    "value": {
+                      "errors": [
+                        {
+                          "location": "body",
+                          "msg": "ISBN must be a string",
+                          "path": "isbn",
+                          "type": "field",
+                          "value": 9780141182999
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/books/{id}": {
+      "get": {
+        "summary": "Get Book By Id",
+        "tags": ["Book List"],
+        "description": "Get Book By Id",
+        "operationId": "getBookById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "string",
+                  "example": "298"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 30 Jan 2024 17:52:38 GMT"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"12a-r7+mnfhW/MJhskY43QN1eFnufU4\""
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "0"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "author": {
+                      "type": "string",
+                      "example": "Dan Brown"
+                    },
+                    "availability": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "bookId": {
+                      "type": "number",
+                      "example": 11
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2024-01-30T00:00:12.800Z"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Thriller exploring religious symbols"
+                    },
+                    "genre": {
+                      "type": "string",
+                      "example": "Mystery"
+                    },
+                    "isbn": {
+                      "type": "string",
+                      "example": "978-0307474278"
+                    },
+                    "publishedDate": {
+                      "type": "string",
+                      "example": "1998-05-16T18:30:00.000Z"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "The Da Vinci Code"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2024-01-30T00:00:12.800Z"
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "author": "Dan Brown",
+                      "availability": true,
+                      "bookId": 11,
+                      "createdAt": "2024-01-30T00:00:12.800Z",
+                      "description": "Thriller exploring religious symbols",
+                      "genre": "Mystery",
+                      "isbn": "978-0307474278",
+                      "publishedDate": "1998-05-16T18:30:00.000Z",
+                      "title": "The Da Vinci Code",
+                      "updatedAt": "2024-01-30T00:00:12.800Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Book Not Found",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "string",
+                  "example": "26"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 30 Jan 2024 17:53:57 GMT"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"1a-9K7Ys+5Z9m3qczPTmMk82VGBL7g\""
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "0"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Book not found"
+                    }
+                  }
+                },
+                "examples": {
+                  "Book Not Found": {
+                    "value": {
+                      "error": "Book not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
