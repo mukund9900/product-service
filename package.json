@@ -4,7 +4,9 @@
   "description": "A simple REST API for managing books with search capabilities.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -39,6 +41,12 @@
     "pug": "^2.0.4",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
-    "sequelize": "^6.33.0"
+    "sequelize": "^6.33.0",
+    "sinon": "^15.0.1",
+    "sinon-chai": "^3.7.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "4.6.3",
+    "uuidv4": "^6.2.13",
+    "winston": "^3.8.2"
   }
 }
