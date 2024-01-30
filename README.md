@@ -40,6 +40,7 @@ The Book Store Service is a RESTful API designed to manage books. It supports va
 
    ```bash
    git clone https://github.com/your-username/book-store-service.git
+   git remote set-url origin git@github.com:mukund9900/product-service.git
    cd book-store-service
 
 
