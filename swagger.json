@@ -3,7 +3,7 @@
   "info": {
     "title": "Product Management Service",
     "version": "1.0.0",
-    "description": "Fetching Books from the data store ",
+    "description": "Managing Products from the data store ",
     "contact": {}
   },
   "servers": [
